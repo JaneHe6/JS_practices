@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			#show {
+				width: 500px;
+				height: 100px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="show">
+
+		</div>
+		<div id="gaokao">
+			
+		</div>
+		<div id="del">
+			
+		</div>
+		<script type="text/javascript">
+			window.onload = function() {
+				showTime();
+				//高考倒计时小案例 
+				var now = new Date();
+				var fur = new Date("2019,6,7");
+				var lefttime = Math.ceil((fur.getTime()-now.getTime())/(24*60*60*1000));//其中getTime()获得的是毫秒数，Math.ceil()则向上取整
+				document.getElementById("gaokao").innerHTML = lefttime;
+				
+				
+				//限时抢小案例
+				setInterval(showtime,1000);
+				function showtime(){
+					var now = new Date();
+					var fur = new Date("2018/11/11,00:00:00");
+					var lefttime = parseInt((fur.getTime()-now.getTime())/1000);//得到的为秒数
+					var d = parseInt(lefttime/(24*60*60));
+					var h = parseInt(lefttime/(60*60)%24);
+					var m = parseInt(lefttime/60%60);
+					var s = parseInt(lefttime%60);
+					document.getElementById("del").innerHTML = "还剩" + d + "天" + h + "小时" + m + "分" + s + "秒";
+				}
+			}
+			function checkTime(i){
+				if(i<10){
+					i = "0"+i;
+				}
+				return i;
+			}
+
+			function showTime() {
+				var myDate = new Date();
+				var year = myDate.getFullYear();
+				var month = myDate.getMonth() + 1;
+				var date = myDate.getDate();
+				var weekend = new Array('星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六');
+				var hour = myDate.getHours();
+				var minute = myDate.getMinutes();
+				var seconds = myDate.getSeconds();
+				document.getElementById("show").innerHTML = year + '年' + month + '月' + date + '日' + weekend[myDate.getDay()] +
+					hour + ':' + checkTime(minute) + ':' + checkTime(seconds) ;
+				setTimeout(showTime,1000);
+
+			}
+			
+			
+		</script>
+	</body>
+
+</html>

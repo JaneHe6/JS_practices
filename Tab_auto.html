@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Tab选项卡</title>
+		<!--tab切换类型有滑过切换，点击切换，延迟切换，自动切换-->
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+				font-size: 12px;
+			}
+			
+			.notice {
+				width: 298px;
+				height: 98px;
+				margin: 10px;
+				border: 1px solid #eee;
+				overflow: hidden;
+			}
+			
+			#notice-tit {
+				height: 27px;
+				position: relative;
+				background: #f7f7f7;
+			}
+			
+			#notice-tit ul {
+				position: absolute;
+				width: 301px;
+				left: -1px;
+			}
+			
+			#notice-tit li {
+				float: left;
+				width: 58px;
+				height: 26px;
+				line-height: 26px;
+				text-align: center;
+				overflow: hidden;
+				background: #f7f7f7;
+				padding: 0 1px;
+				border-bottom: 1px solid #eee;
+			}
+			
+			#notice-tit li.select {
+				background-color: white;
+				border-bottom-color: white;
+				border-left: 1px solid #eee;
+				border-right: 1px solid #eee;
+				padding: 0;
+				font-weight: bolder;
+			}
+			
+			.notice li a:link,
+			.notice li a:visited {
+				text-decoration: none;
+				color: black;
+			}
+			
+			#notice-tit li a:hover {
+				color: #f90;
+			}
+			/*#notice-tit li:hover{
+				background-color: white;
+				border-bottom-color: white;
+			}*/
+			
+			.notice-con .mod {
+				margin: 10px 10px 10px 19px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="notice" id="notice">
+			<div id="notice-tit" class="notice-tit">
+				<ul>
+					<li class="select">
+						<a href="#">公告</a>
+					</li>
+					<li>
+						<a href="#">规则</a>
+					</li>
+					<li>
+						<a href="#">论坛</a>
+					</li>
+					<li>
+						<a href="#">安全</a>
+					</li>
+					<li>
+						<a href="#">公益</a>
+					</li>
+				</ul>
+			</div>
+			<div id="notice-con" class="notice-con">
+				<div class="mod">
+					1
+				</div>
+				<div class="mod" style="display: none;">
+					2
+				</div>
+				<div class="mod" style="display: none;">
+					3
+				</div>
+				<div class="mod" style="display: none;">
+					4
+				</div>
+				<div class="mod" style="display: none;">
+					5
+				</div>
+			</div>
+		</div>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script type="text/javascript">
+			function $(id) {
+				return typeof id === 'string' ? document.getElementById(id) : id;
+			}
+			window.onload = tab();
+
+			function tab() {
+				//当前高亮显示页签的索引
+				var index = 0;
+				var timer = null;
+				//获取鼠标滑过或点击的标签，和要切换内容的元素
+				var titles = $('notice-tit').getElementsByTagName("li");
+				var divs = $("notice-con").getElementsByTagName("div");
+
+				//遍历循环，手动切换
+				for(var i = 0; i < titles.length; i++) {
+					titles[i].id = i;
+					titles[i].onmouseover = function() {
+						clearInterval(timer);
+						changeOption(this.id);
+					}
+					titles[i].onmouseout = function() {
+						timer = setInterval(autoPlay, 2000);
+					}
+				}
+				
+				//把准备等待的定时器清空，再设置定时器
+				if(timer) {
+					clearInterval(timer);
+					timer = null;
+				}
+
+				timer = setInterval(autoPlay, 2000);
+
+				//自动播放
+				function autoPlay() {
+					index++;
+					if(index >= titles.length) {
+						index = 0;
+					}
+					changeOption(index);
+				}
+				
+				//高亮显示切换
+				function changeOption(curIndex) {
+					for(var j = 0; j < titles.length; j++) {
+						titles[j].className = '';
+						divs[j].style.display = "none";
+					}
+					titles[curIndex].className = "select";
+					divs[curIndex].style.display = "block";
+					index = curIndex;//在手动切换后，能够直接往后自动切换
+				}
+			}
+		</script>
+	</body>
+
+</html>

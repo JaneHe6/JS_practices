@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#move{
+				background-color: lightgray;
+				width: 300px;
+				height: 200px;
+				margin: 20px auto;
+			}
+			a{
+				display: inline-block;
+				width: 80px;
+				height: 80px;
+				background-color: white;
+				text-decoration: none;
+				float: left;
+				margin: 10px;
+				text-align: center;
+				position: relative;
+				color: #9C9C9C;
+				border-radius:10% ;
+			}
+			i{
+				position: absolute;
+				/*margin-top: 20px;*/
+				top: 20px;
+				left: 10px;
+				width: 60px;
+				height: 30px;
+				filter: alpha(opacity=100);
+				opacity: 1;
+			}
+			img{
+				/*position: absolute;
+				/*margin-top: 20px;*/
+				/*top: 15px;
+				left: -30px;
+				width: 60px;
+				height: 30px;*/
+			}
+			p{
+				margin-top: 50px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="move" class="d">
+			<a href="#">
+				<i><img src="img/彩票.png" alt=""/></i>
+				<p>彩票</p>
+			</a>
+			<a href="#">
+				<i><img src="img/电影.png" alt=""/></i>
+				<p>电影</p>
+			</a>
+			<a href="#">
+				<i><img src="img/音乐.png" alt=""/></i>
+				<p>音乐</p>
+			</a>
+			<a href="#">
+				<i><img src="img/生活缴费.png" alt=""/></i>
+				<p>缴费</p>
+			</a>
+			<a href="#">
+				<i><img src="img/理财.png" alt=""/></i>
+				<p>理财</p>
+			</a>
+			<a href="#">
+				<i><img src="img/外卖-1.png" alt=""/></i>
+				<p>外卖</p>
+			</a>
+			
+			
+			
+		</div>
+		<script src="js/moreChange.js" type="text/javascript" charset="utf-8"></script>
+			<!--<script type="text/javascript">
+				window.onload = function(){
+					var eImg = document.getElementsByTagName("img");
+					eImg.onmouseover = function(){
+						startMove(eImg,"top",5);
+					}
+					
+					var con = document.getElementsByClassName("container");
+					var aList = con.getElementsByTagName("a");
+					for(var i=0;i<aList.length;i++){
+						aList[i].onmouseover = function(){
+							var _this = this.getElementsByTagName("i")[0];
+							startMove(_this,{top:-25,opacity:0})
+						}
+					}
+				}
+			</script>-->
+			
+			<script type="text/javascript">
+				window.onload = function(){
+					
+					var con = document.getElementsByClassName("d")[0];
+					var aList = con.getElementsByTagName("a");
+					for(var i=0;i<aList.length;i++){
+						aList[i].onmouseenter = function(){
+							var _this = this.getElementsByTagName("i")[0];
+							startMove(_this,{top:-25,opacity:0},function(){
+								_this.style.top = 30+'px';
+								startMove(_this,{top:10,opacity:100});
+							});
+						}
+					}
+				}
+			</script>
+			
+			
+			
+			<!--<script>
+        window.onload=function(){
+            var oMove=document.getElementById('move');
+            var aList=oMove.getElementsByTagName('a');
+ 
+            for(var i=0;i<aList.length;i++){
+                //onmouseenter不会影响子元素，不会引发事件冒泡
+                aList[i].onmouseenter=function(){
+                    var _this=this.getElementsByTagName('i')[0];
+                    startMove(_this,{top:-25,opacity:0},function(){
+                        _this.style.top=30+'px';
+                        startMove(_this,{top:20,opacity:100});
+                    });
+                }
+            }
+        }
+    </script>-->
+	</body>
+</html>

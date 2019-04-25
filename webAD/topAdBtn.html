@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>带按钮的伸缩型顶部广告</title>
+		<style type="text/css">
+			
+			img{
+				width: 1500px;
+				margin-left: 10%;
+			}
+			.ad{
+				display: none;
+			}
+			#close {
+				position: absolute;
+				width: 20px;
+				height: 20px;
+				text-align: center;
+				line-height: 20px;
+				background: #CF3;
+				top: 8px;
+				right: 205px;
+				display: none;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="ad" id="ad">
+			<img id="adcon" src="../img/1.jpg" width="960" height="386"/>
+			<img id="adcur" src="../img/1.jpg" width="960" height="68"/>
+			<span id="close">X</span> 
+		</div>
+		<div class="content"><img src="img/bg.png"/></div>
+		
+		<!--<script type="text/javascript">
+			window.onload = function(){
+				var ad = document.getElementById("ad");
+				var ad1 = document.getElementById("ad1");
+				var ad2 = document.getElementById("ad2");
+				var h = 0;
+				var step = 5;
+				var maxHeight = ad1.height;
+				var minHeight = ad2.height;
+				alert(ad1.height);
+				function adDown(){
+					if(h < maxHeight){
+						h += step;
+						setTimeout(adDown,1);
+					}else{
+						setTimeout(adUp,3000);
+					}
+					ad.style.height = h +'px';
+					ad.style.display = 'block';
+				}
+				function adUp(){
+					ad.style.height = h +'px';
+					if(h > minHeight){
+						h -= step;
+						console.log(h);
+						
+						setTimeout(adUp,1);
+					}else{
+						ad1.style.display = 'none';
+						ad2.style.display = 'block';
+						
+					}
+				}
+				setTimeout(adDown,3000);
+			}
+		</script>-->
+		
+		<script>
+//全局变量
+/*var oAd     = document.getElementById('ad');
+var oAdcon  = document.getElementById('adcon');
+var oAdcur  = document.getElementById('adcur');
+var oClose  = document.getElementById('close');
+*/
+var getId = function(id){
+	return document.getElementById(id);
+	}
+var maxH = getId('adcon').height;//最大高度
+var minH = getId('adcur').height;//最小高度
+var step = 5;//移动的距离
+var h    = 0;
+
+/*广告向下展开*/
+function adDown(){
+	if(h<maxH){
+		h += step;//向下移动
+		setTimeout(adDown,1);
+	}else{
+		setTimeout(adUp,3000); //停留时间自己适当调整 1000 = 1秒
+	}
+	getId('ad').style.display = "block";
+	getId('ad').style.height  = h+"px";
+}
+
+/*广告向上收起*/
+function adUp(){
+	getId('ad').style.height = h+"px";
+
+	if(h>minH) {
+		h -= step;
+		setTimeout(adUp,1);
+	}else {
+		getId('adcon').style.display = "none";
+		getId('close').style.display = "block";
+	}
+}
+
+getId('close').onclick = function(){
+	getId('ad').style.display = "none";
+}
+setTimeout(adDown, 3000);
+</script>
+	</body>
+</html>

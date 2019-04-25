@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<!--点击按钮后，改变原有的文字内容，加载txt文件-->
+		<!--
+			------AJAX简介--------------
+			ajax是异步的JavaScript和XML。
+				是一种用于创建快速动态网页的技术。
+				通过在后台与服务器进行少量的数据交换，ajax可以使网页实现异步更新，即可以在不重新加载整个网页的情况下，对网页的某部分进行更新。
+			
+			
+		-->
+	</head>
+	<body>
+		<div id="myDiv">
+			<h2>使用AJAX修改该文本内容</h2>
+		</div>
+		<button type="button" onclick="loadXMLDoc()">修改内容</button>
+		<script type="text/javascript">
+			function loadXMLDoc(){
+				var xmlhttp;
+				//此判断主要是为了检查浏览器是否支持XMLHttpRequest 对象，若支持，则创建XMLHttpRequest 对象，若不支持，则创建 ActiveXObject 对象
+				if(window.XMLHttpRequest){
+					xmlhttp = new XMLHttpRequest();//IE7+,Firefox，Chrome，opera，Safari浏览器执行代码
+				}else{
+					xmlhttp = new ActiveXObject();//IE6,IE5浏览器执行代码
+				}
+				xmlhttp.onreadystatechange = function(){
+					if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
+						document.getElementById("myDiv").innerHTML = xmlhttp.responseText;
+					}
+				}
+				//如需将请求发送到服务器，我们使用XMLHttpRequest对象的 open() 和 send() 方法
+//					open(method,utl,async) 参数为请求的类型GET/POST; 文件在服务器上的位置; true(异步)或false(同步)
+//					send(string) string仅用于POST请求
+//					与POST相比，GET更简单也更快，并且在大部分情况下都能使用。
+//					以下情况请使用POST请求：无法使用缓存文件(更新服务器上的文件或数据库)； 向服务器发送大量数据(post没有数据量限制)； 发送包含未知字符的用户输入时，post比get更稳定可靠
+
+//					当Async为false时，不用编写onreadystatechange函数，将其中的代码放到send（）语句后即可
+
+				xmlhttp.open("GET","ajax_info.txt",true);
+//				xmlhttp.open("GET","http://192.168.1.131:8080/login&username=user&password=123456",true);
+//				xmlhttp.setRequestHeader("Content-type","application/json");
+//				xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
+				xmlhttp.send();
+			}
+		</script>
+	</body>
+</html>

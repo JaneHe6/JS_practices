@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>自动展开</title>
+    <style type="text/css">   /*设置广告和正文的CSS样式*/
+       
+       #container{
+           width:750px;
+           height:auto;
+           margin:0 auto;
+       }
+       #hpn{
+           width:0;
+           height:100px;
+           margin:0 auto;
+           text-align:center;
+           padding:20px 0;
+           background:#ccc;
+           overflow:hidden;
+           display:none;
+       }
+       #btn{
+           width:750px;
+           height:auto;
+           text-align:center;
+           background:gray;
+           padding:10px 0;
+           display:block;
+           color:white;
+           text-decoration:none;
+           font-weight:bold;
+       }
+    </style>
+    <script type="text/javascript">
+        var w=0;
+        //增加广告宽度函数
+        function addW(){
+            document.getElementById("hpn").style.display = "block";
+            if(w < 750){
+                w += 5;
+                document.getElementById("hpn").style.width = w +'px';
+                
+            }else{
+                return;
+            }
+            setTimeout(addW,10);
+            setTimeout(subW,3000);
+//			subW();
+        }
+        
+        
+        
+        
+        
+        //在网页加载完毕时，调用增加宽度函数，等待5秒钟后调用减少宽度函数。
+//      window.onload = function(){
+            
+            
+        
+        
+        
+        //减少广告宽度函数
+       function subW(){
+          if(w > 0){
+                w -= 5;
+                document.getElementById("hpn").style.width = w +'px';
+                
+            }else{
+                document.getElementById("hpn").style.display = "none";
+                return;
+            }
+            setTimeout(subW,1800);
+           
+       }
+    </script>
+</head>
+<body>
+    <!--广告和正文的HTML代码-->
+    <div id="container">
+        <div id='hpn'>
+            <h1>欢迎来到慕课网</h1>
+            <h4>大幅广告</h4>
+        </div>
+        <a href="javascript:addW();" id="btn">慕课网欢迎你</a>
+    </div>
+    
+</body>
+</html>

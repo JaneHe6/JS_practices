@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>折叠型广告</title>
+		<style type="text/css">
+			
+			.content img{
+				width: 1500px;
+				margin-left: 10%;
+			}
+			.rightAd{
+				/*width: 400px;
+				height: 300px;*/
+				/*background: #CCCCCC;*/
+				position: fixed;	/*比IE6更高的版本才支持*/		
+				right:0;
+				bottom:0;
+			}
+			.showPic{
+				width: 400px;
+				height: 300px;
+			}
+			#close{
+				background: url(img/close.png) no-repeat;
+				width: 25px;
+				height: 28px;
+				display: inline-block;
+				position: absolute;
+				top: 5px;
+				right: 5px;
+			}
+			#close:hover{
+				background: url(img/close1.png) no-repeat;
+			}
+			.hide{
+				display: none;
+			}
+			.show{
+				width: 400px;
+				height: 300px;
+				display: block;
+			}
+			.clickMe{
+				text-align: center;
+				line-height: 30px;
+				width: 400px;
+				background: #CCCCCC;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="content">
+			<img src="img/bg.png"/>
+		</div>
+		<div class="rightAd" id="tipcon">
+				<div class="clickMe" id="clickMe">猜猜我有啥<a href="javascript:void(0);" id="close"></a></div>
+				<div class="showPic" id="showPic"><img src="../img/1.jpg"/></div>
+		</div>
+		<!--<script type="text/javascript">
+			window.onload = function(){
+				var clickme = document.getElementById("clickMe");
+				var showpic = document.getElementById("showPic");
+				var close = document.getElementById("close");
+				clickme.onmouseover = function(){
+//					alert(111);
+					showpic.style.display = 'block';
+					close.style.display = 'block';
+				}
+				close.onclick = function(){
+					showpic.style.display = 'none';
+					close.style.display = 'none';
+				}
+			}
+		</script>-->
+		
+		
+		<!--JS优化-->
+		<script type="text/javascript">
+			//此处的$只是表示一个变量，仿照jQuery的做法，但与jQuery还是有所区别的。通过添加ClassName代替style实现显示和隐藏效果
+			window.onload = function(){
+				var $ = function(id){
+					return document.getElementById(id);
+				}
+				$("clickMe").onmouseover = function(){
+					$("showPic").className = "show";
+					$("close").className = "show";
+				}
+				$("close").onclick = function(){
+					$("showPic").className = "hide";
+					$("close").className = "hide";
+				}
+			}
+		</script>
+	</body>
+</html>

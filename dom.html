@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<!--DOM(document,object,model)
+	认识dom.DOM级别(其中dom0级是不存在的)
+	dom1(DOM Core, DOM HTML)映射文档结构
+	dom2(DOM Views, DOM Events, DOM Style DOM Travelsal and Range)
+	dom3(DOM Load and Save, DOM Validation)
+	文档的类型（GML->SGML -> HTML-> XML）
+	节点类型（常用：Element元素节点1, Attr属性节点2, Text文本节点3, Comment注释节点8, Document文档节点9, DocumentType文档类型节点10, DocumentFragment文档片段节点11）。节点类型有数值常量和字符常量，
+	其中通过数值常量判断节点类型是所有浏览器都兼容的。
+	除了nodeType,还有nodeName,nodeValue
+	domReady，为了提高用户体验，我们大部分时候使用domReady，而不使用window.onload
+	浏览器渲染引擎的基本渲染流程：1.解析HTML，构建DOM树(构建DOM节点)；2.构建渲染树(解析样式信息)；3.布局渲染树(布局DOM节点)；4.绘制渲染树(绘制DOM节点)
+	DOMReady实现策略：在页面的DOM树创建完成后（也就是HTML解析第一步完成）即触发，而无需等待其他资源的加载。即DOMReady实现策略：1.支持DOMContentLoaded事件的，就使用DOMContentLoaded事件。
+	2.不支持的，就用来自Diego Perini发现的著名Hack兼容。兼容原理大概就是，通过IE中的document.documentElement.doScroll('left')来判断DOM树是否创建完毕。
+	元素节点类型的判断方法：isElement, isHTML, isXML, contains
+	DOM节点的继承层次
+	HTML嵌套规则：
+		块状元素与内联元素嵌套规则：1.块元素可包含内联元素或块元素，但内联元素不能包含块元素，只能包含内联元素；2.块元素不能放在p元素里；3.有几个特殊的块元素只能包含内联元素（h1-h6,p,dt）;4.li内可以包含div标签；
+						5.块元素与块元素并列，内联元素与内联元素并列
+		某些特殊元素的嵌套规则：1.有序列表与无序列表；2.定义列表;3.下拉列表；热点链接（img,map,area）;4.多媒体对象(object,param,embed);5.表格
+-->
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#container{
+				height: 477px;
+				margin: 0 auto;
+				border-right: 1px solid #ccc;
+				border-bottom: 1px solid #ccc;
+				overflow: hidden;
+				position: relative;
+			}
+			img{
+				
+				position: absolute;
+				display: block;
+				width: 500px;
+				height: 500px;
+				border-left: 1px solid #ccc;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="container">
+			<img src="" alt="red" title="this is red" style="background-color: red;"/>
+			<img src="" alt="orange" title="this is orange" style="background-color: orange;"/>
+			<img src="" alt="yellow" title="this is yellow" style="background-color: yellow;"/>
+			<img src="" alt="green" title="this is green" style="background-color: green;"/>
+		</div>
+		<script type="text/javascript">
+			window.onload = function(){//onload 所有DOM元素加载完毕后执行函数
+				var box = document.getElementById("container");
+				var imgs = box.getElementsByTagName('img');
+				var imgwidth = imgs[0].offsetWidth;//获取当前图片宽度
+				var exposewidth = 160;//设置掩藏门露出的宽度
+				var boxwidth = imgwidth + (imgs.length-1) * exposewidth;//设置容器的总宽度
+				box.style.width = boxwidth + 'px';
+				//设置每道门的初始位置
+				function setImgsPos(){
+					for(var i=1,len=imgs.length;i<len;i++){
+						imgs[i].style.left = imgwidth + exposewidth * (i - 1) + 'px';
+					}
+				}
+				setImgsPos();
+				//计算每道门打开时应移动的距离
+				var translate = imgwidth - exposewidth;
+				//为每道门绑定事件
+				for(var i=0,len=imgs.length;i<len;i++){
+					//使用立即调用的函数表达式，为了获得不同的i值
+					(function(i){
+						imgs[i].onmouseover = function(){
+							setImgsPos();
+							
+							for(var j=1;j<=i;j++){
+								imgs[j].style.left = parseInt(imgs[j].style.left,10) - translate + 'px';
+							}
+						}
+					})(i);
+				}
+			}
+		</script>
+	</body>
+
+</html>

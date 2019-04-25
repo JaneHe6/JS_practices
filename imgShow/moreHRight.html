@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>多行文字右移显示效果</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			body{
+				width: 1560px;
+				margin: 0 auto;
+			}
+			.container{
+				width: 500px;
+				height: 300px;
+				margin: 0 1px;
+				/*overflow: hidden;*/
+				position: relative;
+				margin-top: 20px;
+				float: left;
+			}
+			img{
+				width: 500px;
+				height: 300px;
+			}
+			.desc{
+				background-color: gray;
+				color: white;
+				width: 100%;
+				height: 300px;
+				border: 2px solid #f00;
+				position: absolute;
+				top: 0;
+				/*left: 520px;*/
+				left: 100%;
+				/*当left为100%时，文字区域紧靠图片区域，若要各个图片之间有间隔，需为文字区域设置相对应的border值填充，使文字区域与图片
+				  区域重合。也可*/
+				z-index: 99;
+				display: none;
+			}
+			p{
+				line-height: 20px;
+				padding: 10px;
+			}
+			/*.container:hover .desc{
+				top: 0;
+			}*/
+		</style>
+	</head>
+	<body>
+		<div class="container" id="container1">
+			<img src="../img/10.jpg"/>
+			<div class="desc">
+				<p>春花秋月何时了，往事知多少</p>
+				<p>小楼昨夜又东风，故国不堪回首明月中</p>
+				<p>雕栏玉砌应犹在，只是朱颜改</p>
+				<p>问君能有几多愁，恰似一江春水向东流</p>
+			</div>
+		</div>
+		<div class="container" id="container2">
+			<img src="../img/13.jpg"/>
+			<div class="desc">
+				<p>明月几时有，把酒问青天</p>
+				<p>不知天上宫阙，今夕是何年</p>
+				<p>我欲随风归去，又恐琼楼玉宇，高处不胜寒</p>
+				<p>起舞弄清影，何似在人间</p>
+			</div>
+		</div>
+		<div class="container" id="container3">
+			<img src="../img/15.jpg"/>
+			<div class="desc">
+				<p>蒹葭苍苍，白露为霜</p>
+				<p>所谓伊人，在水一方</p>
+				<p>溯洄从之，道阻且长</p>
+				<p>溯游从之，宛在水中央</p>
+			</div>
+		</div>
+		<div class="container" id="container1">
+			<img src="../img/10.jpg"/>
+			<div class="desc">
+				<p>春花秋月何时了，往事知多少</p>
+				<p>小楼昨夜又东风，故国不堪回首明月中</p>
+				<p>雕栏玉砌应犹在，只是朱颜改</p>
+				<p>问君能有几多愁，恰似一江春水向东流</p>
+			</div>
+		</div>
+		<div class="container" id="container2">
+			<img src="../img/13.jpg"/>
+			<div class="desc">
+				<p>明月几时有，把酒问青天</p>
+				<p>不知天上宫阙，今夕是何年</p>
+				<p>我欲随风归去，又恐琼楼玉宇，高处不胜寒</p>
+				<p>起舞弄清影，何似在人间</p>
+			</div>
+		</div>
+		<div class="container" id="container3">
+			<img src="../img/15.jpg"/>
+			<div class="desc">
+				<p>蒹葭苍苍，白露为霜</p>
+				<p>所谓伊人，在水一方</p>
+				<p>溯洄从之，道阻且长</p>
+				<p>溯游从之，宛在水中央</p>
+			</div>
+		</div>
+		<div class="container" id="container1">
+			<img src="../img/10.jpg"/>
+			<div class="desc">
+				<p>春花秋月何时了，往事知多少</p>
+				<p>小楼昨夜又东风，故国不堪回首明月中</p>
+				<p>雕栏玉砌应犹在，只是朱颜改</p>
+				<p>问君能有几多愁，恰似一江春水向东流</p>
+			</div>
+		</div>
+		<div class="container" id="container2">
+			<img src="../img/13.jpg"/>
+			<div class="desc">
+				<p>明月几时有，把酒问青天</p>
+				<p>不知天上宫阙，今夕是何年</p>
+				<p>我欲随风归去，又恐琼楼玉宇，高处不胜寒</p>
+				<p>起舞弄清影，何似在人间</p>
+			</div>
+		</div>
+		<div class="container" id="container3">
+			<img src="../img/15.jpg"/>
+			<div class="desc">
+				<p>蒹葭苍苍，白露为霜</p>
+				<p>所谓伊人，在水一方</p>
+				<p>溯洄从之，道阻且长</p>
+				<p>溯游从之，宛在水中央</p>
+			</div>
+		</div>
+		<!--<script type="text/javascript">
+			//利用传参的方法实现
+			window.onload = function(){
+				function showMeg(index){
+					var Div = document.getElementById("container" + index);
+					Div.onmouseover = showAtop;
+					Div.onmouseout = hideAtop;
+					function showAtop(){
+						Div.getElementsByClassName("desc")[0].style.top = 0;
+					}
+					function hideAtop(){
+						Div.getElementsByClassName("desc")[0].style.top = 260 + 'px';
+					}
+				}
+				showMeg(1);
+				showMeg(2);
+				showMeg(3);
+			}
+			
+		</script>-->
+		
+		<!--for循环用于知道循环次数的场合，while循环适合于不知道循环次数的场合-->
+		<script type="text/javascript">
+			window.onload = function(){
+				var con = document.getElementsByClassName("container");
+				for(var i=0;i<con.length;i++){
+					con[i].onmouseover = showAtop;
+					con[i].onmouseout = hideAtop;
+				}
+				var j = con.length;
+				while(j){
+					if(j%3==0){
+						firLi = con[j-1];
+						firLi.getElementsByTagName("div")[0].style.left = 'auto';
+						firLi.getElementsByTagName("div")[0].style.right = '100%';
+					}
+					j--;
+				}
+				
+				
+				function showAtop(){
+						this.getElementsByClassName("desc")[0].style.display = "block";
+					}
+					function hideAtop(){
+						this.getElementsByClassName("desc")[0].style.display = "none";
+					}
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>定时广告展开与折叠</title>
+		<style type="text/css">
+			body{
+				margin: 0 auto;
+				padding: 0;
+			}
+			#pn{
+				background: #e8e8e8;
+				width: 950px;
+				display: block;
+				margin: 0 auto;
+				padding: 5px;
+				/*height: 300px;*/
+				height: auto;
+				text-align: center;
+				/*display: none;*/
+				overflow: hidden;
+			}
+			#content{
+				margin: 0 auto;
+				padding: 5px;
+				width: 950px;
+				height: auto;
+				background: gray;
+				text-align: center;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="pn">
+			<h1>欢迎来到imooc</h1>
+			<h2>大幅广告</h2>
+			<img src="../img/1.jpg"/>
+		</div>
+		<div id="content">
+			imooc欢迎你<br />正文
+		</div>
+		<!--self可用-->
+		<!--<script type="text/javascript">
+			window.onload = function(){
+				var flag = false;
+				var btn = document.getElementById("content");
+				var pn = document.getElementById("pn");
+				btn.onclick = function(){
+					if(flag){
+						pn.style.display = "none";
+						flag = false;
+						btn.innerHTML = "正文";
+					}else{
+						pn.style.display = "block";
+						flag = true;
+						btn.innerHTML = "imooc欢迎你";
+					}
+				}
+				
+				function showdiv(){
+					
+				}
+			}
+		</script>-->
+		<script type="text/javascript">
+//			function showdiv(){
+//				document.getElementById("pn").style.display = "block";
+//				document.getElementById("strHref").innerHTML = "收起选项";
+////				document.getElementById("strHref").href = "javascript:hidediv()";
+//			}
+//			function hidediv(){
+//				document.getElementById("pn").style.display = "none";
+//				document.getElementById("strHref").innerHTML = "展开选项";
+////				document.getElementById("strHref").href = "javascript:showdiv()";
+//			}
+//			var pn = document.getElementById("pn");
+//			var btn = document.getElementById("content");
+			var h = 0;
+			function addH(){
+				if(h < 600){
+					h += 5;
+					document.getElementById("pn").style.height = h + "px";
+				}else{
+					return;
+				}
+				setTimeout(addH,30);
+			}
+			function subH(){
+				if(h > 0){
+					h -= 5;
+					document.getElementById("pn").style.height = h + "px";
+				}else{
+					document.getElementById("pn").style.display = "none";
+					return;
+				}
+				setTimeout(subH,30);
+			}
+			window.onload = function(){
+				addH();
+				setTimeout(subH,5000);
+			}
+		</script>
+	</body>
+</html>

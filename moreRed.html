@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			ul{
+				list-style: none;
+			}
+			li{
+				width:200px;
+				height: 100px;
+				background-color: yellow;
+				margin-bottom: 20px;
+				filter: alpha(opacity:30);
+				opacity: 0.3;
+			}
+			div{
+				width: 200px;
+				height: 200px;
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<!--<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>-->
+		<div id="div1">
+			
+		</div>
+		<script type="text/javascript">
+			window.onload = function(){
+				var aLi = document.getElementById("div1");
+				for(var i=0;i<aLi.length;i++){
+					aLi[i].time = null;
+					aLi[i].onmouseover = function(){
+						startMove(this,400);
+					}
+					aLi[i].onmouseout = function(){
+						startMove(this,200);
+					}
+				}
+			}
+			var alpha = 30;
+			function startMove(obj,end){
+				clearInterval(obj.time);
+				obj.time = setInterval(function(){
+					var speed = (end-obj.offsetWidth)/8;
+					speed = speed>0?Math.ceil(speed):Math.floor(speed);
+					if(obj.offsetWidth == end){
+						clearInterval(obj.time);
+					}else{
+						obj.style.width = obj.offsetWidth + speed +'px';
+					}
+				},30);
+			}
+		</script>
+	</body>
+</html>

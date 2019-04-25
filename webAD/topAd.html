@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>伸缩型顶部广告</title>
+		<style type="text/css">
+			
+			img{
+				width: 1500px;
+				margin-left: 10%;
+			}
+			.ad{
+				display: none;
+			}
+			.hide{
+				display: none;
+			}
+			.show{
+				display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="ad" id="ad"><img id="adcon" src="../img/1.jpg" style="height: 500px;"/></div>
+		<div class="content"><img src="img/bg.png"/></div>
+		
+		<script type="text/javascript">
+			window.onload = function(){
+				var ad = document.getElementById("ad");
+				var adcon = document.getElementById("adcon");
+				var h = 0;
+				var step = 5;
+				var maxHeight = adcon.height;
+				function adDown(){
+					ad.style.height = h +'px';
+					ad.style.display = 'block';
+					if(h < maxHeight){
+						h += step;
+						setTimeout(adDown,1);
+					}else{
+						setTimeout(adUp,3000);
+					}
+				}
+				function adUp(){
+					if(h > 0){
+						h -= step;
+						ad.style.height = h +'px';
+						setTimeout(adUp,1);
+					}
+				}
+				setTimeout(adDown,3000);
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#lian{
+				width: 200px;
+				height: 100px;
+				background-color: yellowgreen;
+				border: 1px solid salmon;
+				filter: alpha(30);
+				opacity: 0.3;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="lian">
+			
+		</div>
+		<script src="js/Lian.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			window.onload = function(){
+				var oDiv = document.getElementById("lian");
+				oDiv.onmouseover = function(){
+					startMove(oDiv,'width',400,function(){
+						startMove(oDiv,'height',200,function(){
+							startMove(oDiv,'opacity',100,function(){
+								startMove(oDiv,'margin-left',100,function(){
+									startMove(oDiv,'margin-top',100,function(){
+										startMove(oDiv,'margin-left',0,function(){
+											startMove(oDiv,'margin-top',0);
+										});
+									});
+								});
+							});
+						});
+					});
+				}
+				//注意顺序，一般和移入 时相反
+				oDiv.onmouseout = function(){
+					startMove(oDiv,'margin-top',100,function(){
+						startMove(oDiv,'margin-left',100,function(){
+							startMove(oDiv,'margin-top',0,function(){
+								startMove(oDiv,'margin-left',0,function(){
+									startMove(oDiv,'opacity',30,function(){
+										startMove(oDiv,'height',100,function(){
+											startMove(oDiv,'width',200);
+										});
+									});
+								});
+							});
+						});
+					});
+				}
+			}
+		</script>
+	</body>
+</html>

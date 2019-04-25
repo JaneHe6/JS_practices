@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<!--post方法请求数据-->
+		<!--
+			若要像HTML表单那样post数据，需使用 setRequestHeader() 来添加HTTP头，然后在send方法中规定希望发送的数据
+			setRequestHeader(header,value) 参数分别为规定头的名称，规定头的值
+		-->
+	</head>
+	<body>
+		<h2>AJAX</h2>
+		<button type="button" onclick="loadXMLDoc()">请求数据</button>
+		<div id="myDiv">
+			
+		</div>
+		<script type="text/javascript">
+			function loadXMLDoc(){
+				var xmlhttp;
+				if(window.XMLHttpRequest){
+					xmlhttp = new XMLHttpRequest();
+				}else{
+					xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+				}
+				xmlhttp.onreadystatechange = function(){
+					if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
+						document.getElementById("myDiv").innerHTML = xmlhttp.responseText;
+					}
+				}
+				xmlhttp.open("POST","new_file.php",true);
+				//xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
+				xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+//				xmlhttp.setRequestHeader("Content-type","application/json");
+				xmlhttp.send("fname=harry&lname=Port");
+			}
+		</script>
+	</body>
+</html>

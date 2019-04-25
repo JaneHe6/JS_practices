@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			ul{
+				list-style: none;
+			}
+			li{
+				width:200px;
+				height: 100px;
+				background-color: yellow;
+				margin-bottom: 20px;
+				border: 1px solid purple;
+			}
+			#test{
+				width: 200px;
+				height: 100px;
+				background-color: mediumpurple;
+				border: 1px solid black;
+			}
+			#opa{
+				width: 200px;
+				height: 100px;
+				background-color: pink;
+				border: 1px solid darkcyan;
+				filter: alpha(30);
+				opacity: 0.3;
+				margin-top: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<div id="test">
+			
+		</div>
+		<div id="opa">
+			
+		</div>
+		<script type="text/javascript">
+			window.onload = function(){
+				var aLi = document.getElementsByTagName("li");
+				for(var i=0;i<aLi.length;i++){
+					aLi[i].time = null;
+					aLi[i].onmouseover = function(){
+						startMove(this,'height',400);
+					}
+					aLi[i].onmouseout = function(){
+						startMove(this,'height',100);
+					}
+				}
+				
+				var test = document.getElementById("test");
+				test.onmouseover = function(){
+					startMove(this,'width',400);
+				}
+				test.onmouseout = function(){
+					startMove(this,'width',200);
+				}
+				
+				var opa = document.getElementById("opa");
+				opa.onmouseover = function(){
+					startMove(this,'opacity',100);
+				}
+				opa.onmouseout = function(){
+					startMove(this,'opacity',30);
+				}
+				
+			}
+			
+			
+			//以下通过offset改变元素的宽度
+//			function startMove(obj,end){
+//				clearInterval(obj.time);
+//				obj.time = setInterval(function(){
+//					var speed = (end-obj.offsetWidth)/8;
+//					speed = speed>0?Math.ceil(speed):Math.floor(speed);
+//					if(obj.offsetWidth == end){
+//						clearInterval(obj.time);
+//					}else{
+//						obj.style.width = obj.offsetWidth + speed +'px';
+//					}
+//				},30);
+//			}
+
+
+
+//			以下通过getStyle函数代替offset来改变元素的宽度
+//			function startMove(obj,end){
+//				clearInterval(obj.time);
+//				obj.time = setInterval(function(){
+//					var icu = parseInt(getStyle(obj,'width'));
+//					var speed = (end-icu)/8;
+//					speed = speed>0?Math.ceil(speed):Math.floor(speed);
+//					if(icu == end){
+//						clearInterval(obj.time);
+//					}else{
+//						obj.style['width'] = icu + speed +'px';//obj.style.width 也可以写成 obj.style['width']
+//					}
+//				},30);
+//			}
+			
+			
+			
+//			以下是通过传参的方式设置需要改变的属性值
+//			function startMove(obj,attr,end){
+//				clearInterval(obj.time);
+//				obj.time = setInterval(function(){
+//					var icu = parseInt(getStyle(obj,attr));
+//					var speed = (end-icu)/8;
+//					speed = speed>0?Math.ceil(speed):Math.floor(speed);
+//					if(icu == end){
+//						clearInterval(obj.time);
+//					}else{
+//						obj.style[attr] = icu + speed +'px';//obj.style.width 也可以写成 obj.style['width']。该方法可以将需要改变的属性设置为变量进行传参
+//					}
+//				},30);
+//			}
+
+
+//			改变属性时，该函数仅适用于有数值的属性，故透明度不同，由于之前对属性值取整，而透明度其中一个为小数，故需要对其进行判断后取小数；另外透明度没有单位，故需要在最后进行判断后去掉单位并进行相应的数值调整
+			function startMove(obj,attr,end){
+				clearInterval(obj.time);
+				obj.time = setInterval(function(){
+					//判断属性
+					if(attr == 'opacity'){
+						var icu = Math.round(parseFloat(getStyle(obj,attr))*100);//添加Math.round()四舍五入是为了使取到的数值更加精确
+					}else{
+						var icu = parseInt(getStyle(obj,attr));
+					}
+					//算速度
+					var speed = (end-icu)/8;
+					speed = speed>0?Math.ceil(speed):Math.floor(speed);
+					//检测停止
+					if(icu == end){
+						clearInterval(obj.time);
+					}else{
+						if(attr == 'opacity'){
+							obj.style.filter = 'alpha(opacity:' + (icu + speed) + ')';
+							obj.style[attr] = (icu + speed)/100;
+						}else{
+							obj.style[attr] = icu + speed +'px';//obj.style.width 也可以写成 obj.style['width']。该方法可以将需要改变的属性设置为变量进行传参
+						}
+						
+						
+					}
+				},30);
+			}
+			
+			function getStyle(obj,attr){//通过这个函数可以使容器添加其他样式的情况下不影响改变,用getStyle代替offset解决offset带来的一些bug
+				if(obj.currentStyle){
+					return obj.currentStyle[attr];//针对IE浏览器获取样式
+				}else{
+					return getComputedStyle(obj,false)[attr];//针对firefox浏览器获取样式
+				}
+			}
+		</script>
+	</body>
+</html>

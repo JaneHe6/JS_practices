@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>网页定位导航效果</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			body{
+				font-size: 12px;
+				line-height: 1.7;
+			}
+			li{
+				list-style: none;
+			}
+			#content{
+				width: 800px;
+				margin: 0 auto;
+				padding: 20px;
+				margin-bottom: 200px;
+			}
+			#content h1{
+				color: #008B8B;
+			}
+			#content .item{
+				padding: 20px;
+				margin-bottom: 20px;
+				border: 1px dotted #008B8B;
+			}
+			#content .item h2{
+				font-size: 16px;
+				font-weight: bold;
+				border-bottom: 2px solid #008B8B;
+				margin-bottom: 10px;
+			}
+			#content .item li{
+				display: inline;
+				margin-right: 10px;
+			}
+			#content .item img{
+				width: 230px;
+				height: 230px;
+				border: none;
+			}
+			#menu{
+				position: fixed;
+				top: 100px;
+				left: 50%;
+				margin-left: 400px;
+				width: 80px;
+			}
+			#menu ul a{
+				display: block;
+				margin: 5px 0;
+				font-size: 14px;
+				font-weight: bold;
+				color: #008B8B;
+				width: 80px;
+				height: 50px;
+				line-height: 50px;
+				text-decoration: none;
+				text-align: center;
+			}
+			#menu li a:hover,#menu li a.current{
+				color: white;
+				background: #008B8B;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="menu">
+			<ul>
+				<li><a href="#item1" class="current">1F</a></li>
+				<li><a href="#item2">2F</a></li>
+				<li><a href="#item3">3F</a></li>
+				<li><a href="#item4">4F</a></li>
+				<li><a href="#item5">5F</a></li>
+			</ul>
+		</div>
+		<div id="content">
+			<h1>购物网</h1>
+			<div id="item1" class="item">
+				<h2>1F</h2>
+				<ul>
+					<li><a href="#"><img src="img/Lighthouse.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/Lighthouse.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/Lighthouse.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/Lighthouse.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/Lighthouse.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/Lighthouse.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/Lighthouse.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/Lighthouse.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/Lighthouse.jpg" alt="" /></a></li>
+				</ul>
+			</div>
+			<div id="item2" class="item">
+				<h2>2F</h2>
+				<ul>
+					<li><a href="#"><img src="img/Lighthouse.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/Lighthouse.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/Lighthouse.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/Lighthouse.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/Lighthouse.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/Lighthouse.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/Lighthouse.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/Lighthouse.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/Lighthouse.jpg" alt="" /></a></li>
+				</ul>
+			</div>
+			<div id="item3" class="item">
+				<h2>3F</h2>
+				<ul>
+					<li><a href="#"><img src="img/Lighthouse.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/Lighthouse.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/Lighthouse.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/Lighthouse.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/Lighthouse.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/Lighthouse.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/Lighthouse.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/Lighthouse.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/Lighthouse.jpg" alt="" /></a></li>
+				</ul>
+			</div>
+			<div id="item4" class="item">
+				<h2>4F</h2>
+				<ul>
+					<li><a href="#"><img src="img/Lighthouse.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/Lighthouse.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/Lighthouse.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/Lighthouse.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/Lighthouse.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/Lighthouse.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/Lighthouse.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/Lighthouse.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/Lighthouse.jpg" alt="" /></a></li>
+				</ul>
+			</div>
+			<div id="item5" class="item">
+				<h2>5F</h2>
+				<ul>
+					<li><a href="#"><img src="img/Lighthouse.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/Lighthouse.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/Lighthouse.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/Lighthouse.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/Lighthouse.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/Lighthouse.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/Lighthouse.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/Lighthouse.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/Lighthouse.jpg" alt="" /></a></li>
+				</ul>
+			</div>
+		</div>
+		
+		<!--使用JQ实现-->
+		<!--<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				//滚动条发生滚动
+				$(window).scroll(function(){
+					var top = $(document).scrollTop();//获得滚动条距离顶部的距离
+					var menu = $("#menu");
+					var items = $("#content").find(".item");//通过id来筛选要比class效率更高
+					var currenrId = "";
+					items.each(function(){//遍历后获取每个层到顶部的top值
+						var m = $(this);
+						var itemTop = m.offset().top;
+						if(top > itemTop-200){//此处减少一些像素，是为了在某一层大部分图片已经显示的情况下，侧边的链接就进行了转换
+							currenrId = "#"+m.attr("id");
+						}else{
+							return false;
+						}
+					});
+					
+					var currentLink = menu.find(".current");
+					if(currenrId && currentLink.attr("href") != currenrId){
+						currentLink.removeClass("current");
+						menu.find("[href=" + currenrId + "]").addClass("current");
+					}
+				});
+			});
+		</script>-->
+		
+		
+		<!--使用JS实现-->
+		<!--<script type="text/javascript">
+			window.onload = function(){
+				window.onscroll = function(){
+					var top = document.documentElement?document.documentElement.scrollTop:document.body.scrollTop;
+					var menus = document.getElementById("menu").getElementsByTagName("a");
+					var items = getByClassName(document.getElementById("content"),"item");
+					var currentId = "";
+					for(var i=0;i<items.length;i++){
+						var _item = items[i];
+						var _itemTop = item.offsetTop;
+						if(top > _itemTop-200){
+							currentId = _item.id;
+						}else{
+							break;
+						}
+					}
+					if(currentId){
+						//给正确的 menu下的 a元素class赋值 
+						for(var j=0;j<menus.length;j++){
+							var _menu = menus[j];
+							var _href = _menu.href.split("#");
+							if(_href[_href.length-1] != currentId){
+								removeClass(_menu,"current");
+							}else{
+								addClass(_menu,"current");
+							}
+						}
+					}
+				}
+			}
+			function getByClassName(obj,cls){
+				var elements = obj.getElementsByTagName("*");
+				var result = [];
+				for(var i=0;i<elements.length;i++){
+					if(elements[i].className == cls){//此处若有多个类名 ，则该方法失效 
+						result.push(elements[i]);
+					}
+				}
+				return result;
+			}
+			function hasClass(obj,cls){//检查 是否 存在这个类 
+				return obj.className.match(new RegExp("(\\s\^)" + cls + "(\\s|$)"));
+			}
+			function removeClass(obj,cls){
+				if(hasClass(obj,cls)){
+					var reg = new RegExp("(\\s|^)" + cls + "(\\s|$)");
+					obj.className = obj.className.replace(reg,"");
+				}
+			}
+			function addClass(obj,cls){
+				if(!hasClass(obj,cls)){
+					obj.className += " " + cls;
+				}
+			}
+		</script>-->
+		
+		<script>
+    
+  //定义getByClassName函数，让函数实现根据class name获取对象并返回
+    function getByClassName(obj,cls){
+        var elements = obj.getElementsByTagName("*");
+        var result = [];
+        for(var i=0;i<elements.length;i++){
+            if(elements[i].className == cls){
+                result.push(elements[i]);
+            }
+        }
+        return result;
+    }
+	
+	function hasClass( obj, cls ){ 
+	    return obj.className.match(new RegExp("(\\s|^)" + cls + "(\\s|$)"));
+	}
+	
+	function removeClass( obj, cls ){ 
+	    if( hasClass( obj, cls )){ 
+		    //remove
+			var reg = new RegExp("(\\s|^)" + cls + "(\\s|$)");
+			obj.className = obj.className.replace(reg, "");
+		}
+	}
+	
+	
+    //定义getByClassName函数，让函数实现给对象增加class 
+    function addClass(obj,cls){
+        if(!hasClass(obj,cls)){
+            obj.className += " " + cls;
+        }
+    }
+    
+	
+	window.onload = function(){ 
+		
+	    window.onscroll = function(){ 		
+		    var top = document.documentElement ? document.documentElement.scrollTop : document.body.scrollTop;
+			
+			var menus = document.getElementById("menu").getElementsByTagName("a");
+			
+			var items = getByClassName(document.getElementById("content"), "item");
+			
+			var currentId = "";
+			
+			for ( var i=0; i< items.length; i++ ){ 
+			    var _item = items[i];
+			    var _itemTop = _item.offsetTop;
+				if( top > _itemTop - 200 ){ 
+				    currentId = _item.id;
+				} else { 
+				    break;
+				}			
+			}
+		
+			 				
+      //请补充此处代码，给正确的menu下的a元素class赋值current
+            if(currentId){
+                for(var j=0;j<menus.length;j++){
+                    var _menu = menus[j];
+                    var _href = _menu.href.split("#");
+                    if(_href[_href.length-1] != currentId){
+                        removeClass(_menu,"current");
+                    }else{
+                        addClass(_menu,"current");
+                    }
+                }
+            }
+      
+	
+		}	
+	}	
+</script>
+		
+		
+	</body>
+</html>

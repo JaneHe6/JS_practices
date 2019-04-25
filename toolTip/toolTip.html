@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>toolTip</title>
+		<!--关键点：
+				显示——鼠标移至超链接上，提示框显示   onmouseenter,onmouseleave
+				隐藏——鼠标移开时，提示框自动隐藏   
+				定位——提示框的位置需根据超链接的位置来设置  position
+				可配置——提示框可以根据参数不同，改变尺寸和显示内容  createElement,appendChild
+				setTimeout,clearTimeout
+				setTimeout只执行一次，setInterval可设置周期执行多次
+			
+				
+				onmouseenter 和 onmouseover 的不同：前者穿过子元素时，不会触发该事件；后者经过子元素亦会触发该事件
+				
+		-->
+		<style type="text/css">
+			body{
+				margin: 0;
+				padding: 0;
+				/*background-color: yellowgreen;*/
+			}
+			a{
+				text-decoration: none;
+				color: lightseagreen;
+			}
+			.container{
+				margin: 0 auto;
+				margin-top: 30px;
+				width: 600px;
+				height: 300px;
+				padding: 20px;
+				border: 10px solid darkgray;
+				border-radius: 10px;
+				-moz-border-radius: 10px;
+				-webkit-border-radius: 10px;
+				box-shadow: 0 0 0 10px rgba(0,0,0,0.2);
+				-moz-box-shadow:0 0 0 10px rgba(0,0,0,0.2);
+				-webkit-box-shadow: 0 0 0 10px rgba(0,0,0,0.2);
+			}
+			.toolTipBox{
+				display: none;
+				background: #fff;
+				line-height: 1.6;
+				border: 1px solid #66ccff;
+				color: #333;
+				padding: 20px;
+				font-size: 12px;
+				border-radius: 5px;
+				-moz-border-radius: 5px;
+				-webkit-border-radius: 5px;
+				overflow: auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<h3>原生JavaScript实现ToolTip效果</h3>
+			<p>ToolTip效果是非常常见的网页特效，它可以在用户将指针放置在控件上时为用户显示提示信息。比如显示一行文字的全称，例：
+				<a href="#" id="tooltip1">中国</a><div class="toolTipBox">中华人民共和国</div>，<a href="#">NBA</a><div class="toolTipBox">中华人民共和国</div>。又比如显示一段文字，例：唐诗三百首中的春晓你会么？</p>
+			<p>ToolTip效果还可以用来显示图片，例：<a href="#">西湖美景</a><div class="toolTipBox"><img src="../img/16.jpg"/></div>。当然先是一块儿带格式的内容也不在话下，例：<a href="#">我的资料</a><div class="toolTipBox"><a href="https://www.imooc.com/"></a></div>。</p>
+			<p>甚至你可以显示一整个网站：例：<a href="#">慕课网</a><div class="toolTipBox"><a href="https://www.imooc.com/"></a></div></p>
+		</div>
+		<script type="text/javascript">
+			var toolTipBox.className = "toolTipBox";
+			var isIE = navigator.userAgent.indexOf("MSIE") > -1;//判别是否为IE浏览器，但是无法判别IE11
+			function showToolTip(obj,id,html,width,height){//超链接元素，提示框id，提示框HTML，提示框宽度（可选），提示框高度（可选）
+				if(document.getElementById(id) == null){
+					//创建
+					var toolTipBox;
+					toolTipBox = document.createElement("div");
+					toolTipBox.id = id;
+					toolTipBox.innerHTML = html;
+					obj.appendChild(toolTipBox);
+					
+					toolTipBox.style.width = width? width + "px":"auto";//但是IE不支持AUTO属性，可通过用户代理的方式判别是否为IE浏览器，再做出对应操作
+					toolTipBox.style.height = height? height + "px":"auto";
+					
+					if(!width && isIE){
+						toolTipBox.style.width = toolTipBox.offsetWidth;
+					}
+					
+					toolTipBox.style.position = 'absolute';
+					toolTipBox.style.display = 'block';
+					
+					var left = obj.offsetLeft;
+					var top = obj.offsetTop + 20;
+					
+					toolTipBox.style.left = left + "px";
+					toolTipBox.style.top = top + "px";
+					
+					obj.onmouseleave = function(){
+						document.getElementById(id).style.display = "none";
+					}
+				}else{
+					//显示
+					document.getElementById(id).style.display = "block";
+				}
+			}
+			
+			var t1 = document.getElementById("tooltip1");
+			t1.onmouseenter = function(){
+				showToolTip(this,"t1","中华人民共和国",100)
+			}
+		</script>
+	</body>
+</html>

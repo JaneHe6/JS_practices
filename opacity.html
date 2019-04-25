@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{margin: 0;padding: 0;}
+			#opa{
+				width: 200px;
+				height: 200px;
+				background-color: red;
+				filter: alpha(opacity:30);
+				opacity: 0.5;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="opa">
+			
+		</div>
+		<script type="text/javascript">
+			window.onload=function(){
+				var divCon=document.getElementById("opa");
+				divCon.onmouseover=function(){
+					startChange(100);
+				}
+				divCon.onmouseout=function(){
+					startChange(30);
+				}
+			}
+			var time = null;
+			var alpha = 30;
+			function startChange(itarget){
+				var divCon=document.getElementById("opa");
+				clearInterval(time);
+				time = setInterval(function(){
+					var speed = 0;
+					if(alpha > itarget){
+						speed = -5;
+					}else{
+						speed = 5;
+					}
+					if(alpha == itarget){
+						clearInterval(time);
+					}else{
+						alpha += speed;
+						divCon.style.filter = 'alpha(opacity:'+ speed +')';
+						divCon.style.opacity = alpha/100;
+					}
+				},30);
+			}
+		</script>
+	</body>
+</html>

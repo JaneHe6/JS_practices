@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>网页广告特效</title>
+		<style type="text/css">
+			
+			.content img{
+				width: 1500px;
+				margin-left: 10%;
+			}
+			.rightAd{
+				width: 400px;
+				height: 300px;
+				background: #CCCCCC;
+				position: fixed;	/*比IE6更高的版本才支持*/		
+				right:0;
+				bottom:0;
+			}
+			.pic{
+				position: relative;
+			}
+			.pic a#close{
+				background: url(img/close.png) no-repeat;
+				width: 16px;
+				height: 16px;
+				display: inline-block;
+				position: absolute;
+				top: 5px;
+				right: 5px;
+			}
+			.pic a#close:hover{
+				background: url(img/close1.png) no-repeat;
+			}
+			.hide{
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="content">
+			<img src="img/bg.png"/>
+		</div>
+		<div class="rightAd" id="tipcon">
+			<div class="pic">
+				<a href="#"><img src="../img/1.jpg"/></a>
+				<a href="javascript:void(0);" id="close"></a>
+			</div>
+		</div>
+		<script type="text/javascript">
+			window.onload = function(){
+				var TipBox = document.getElementById("tipcon");
+				var closeBtn = document.getElementById("close");
+				closeBtn.onclick = function(){
+//					TipBox.style.display = 'none';  除此之外，还可以通过添加类来实现隐藏
+  					TipBox.className = 'hide';
+				}
+			}
+		</script>
+	</body>
+</html>

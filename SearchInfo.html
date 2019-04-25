@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>搜索框</title>
+		<meta http-equiv="X-UA-Compatible" name="" content="IE=edge"/>
+		<style type="text/css">
+			body{
+				background-color: #333;
+				position: relative;
+			}
+			.bg-div{
+				background:lightblue;
+				width: 1228px;
+				height: 690px;
+				margin: 0 auto;
+			}
+			.logo{
+				background: yellowgreen;
+				width: 107px;
+				height: 53px;
+				float: left;
+				margin: -4px 18px 0 0;
+			}
+			form{
+				float: left;
+				background-color: #fff;
+				padding:5px;
+			}
+			.search-input-text{
+				border: 0;
+				height: 25px;
+				line-height: 25px;;
+				float: left;
+				outline: none;
+				width: 350px;
+			}
+			.search-input-button{
+				border: 0;
+				background: orange;
+				width: 29px;
+				height: 25px;
+				float: left;
+			}
+			.search-box{
+				position: absolute;
+				top: 200px;
+				left: 300px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="search-box">
+			<div class="bg-div">
+				<div class="logo"></div>
+				<form action="">
+					<input type="text" class="search-input-text" />
+					<input type="button" class="search-input-button" />
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

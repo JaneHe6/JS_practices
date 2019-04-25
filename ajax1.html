@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Ajax</title>
+		<!--异步的js和xml,是无需加载整个网页更新局部的技术，通过在后台跟服务器进行少量的数据交换，改变了web开发格局。
+			同步和异步的概念
+			步骤：
+				1.运用HTML和 CSS来实现页面，表达信息；
+				2.运用XMLHttpRequest（简称XHR）和 web服务器进行数据的异步交换；
+				3.运用JS操作DOM,实现动态局部刷新；
+				
+				
+				第二步分解：创建对象，发起请求
+					兼容更早版本：
+					var request;
+					if(window.XMLHttpRequest){
+						request = new XMLHttpRequest();//IE7+,Firefox,Chrome,Opera,Safari……
+					}else{
+						request = new ActiveXObject("Microsoft.XMLHTTP");//IE5,IE6
+					}
+					
+					HTTP：是计算机通过网络进行通信的规则，从服务器请求信息和服务，是一种无状态协议（不建立长久连接）
+					请求步骤：
+						1.建立TCP连接
+						2.web浏览器向Web服务器发送请求命令
+						3.web浏览器发送请求头信息
+						4.Web服务器应答
+						5.Web服务器发送应答头信息
+						6.Web服务器向浏览器发送数据
+						7.Web服务器关闭TCP连接
+					一个HTTP请求组成：
+						1.HTTP请求的方法或动作（get、post）
+						2.正在请求的URL，即请求的地址
+						3.请求头，包含一些客户端环境信息，身份验证信息等
+						4.请求体，也就是请求正文，请求正文中可以包含客户提交的查询字符串信息，表单信息等
+					get（幂等，查询次数不影响结果）：一般用于信息获取，使用URL传递参数，对所发送信息的数量也有限制，一般在2000个字符
+					post：一般用于修改服务器上的资源，对所发送信息的数量无限制
+					一个HTTP响应组成：
+						1.一个数字和文字组成的状态码，用来显示请求是成功还是失败；
+						2.响应头 ，包含服务器类型，日期时间，内容类型和长度等；
+						3.响应体，即响应正文
+					状态码：
+						1XX:信息类，表示收到web浏览器请求，正在进一步的处理中；
+						2XX：成功，表示用户请求被正确接收；
+						3XX：重定向，表示请求没有成功，客户必须采取进一步的动作；
+						4XX:客户端错误，表示客户端提交的请求有错误；
+						5XX：服务器错误，表示服务器不能完成对请求的处理；
+						
+					XHR发送请求方法：
+						open(method,url,async)
+						send(string)
+						如：
+							request.open("GET","get.php",true);
+							request.send();
+							
+							request.open("POST","post.php",true);
+							request.send();
+							
+							request.open("POST","create.php",true);
+							request.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+							request.send("name=wang&sex=男");
+							
+					XHR获取响应：
+						responseText:获得字符串形式的响应数据；
+						responseXML:获取XML形式的响应数据；
+						status和statusText：以数字和文本形式返回HTTP状态码
+						getAllResponseHeader():获取所有的响应报头；
+						getResponseHeader():查询响应中的某个字段的值；
+						
+						属性：
+							readyState：代表服务器响应的变化，
+								0表示未初始化，open还没有调用
+								1表示服务器连接已建立，open已经调用
+								2表示请求已接收，即接收到头信息
+								3表示请求处理中，即接收到响应主体
+								4表示请求已完成，且响应已就绪，即响应完成
+								
+						如：
+							var request = new XMLHttpRequest();
+							request.open("GET","get.php",true);
+							request.send();
+							request.onreadystatechange = function(){
+								if(reuqest.readyState === 4 && request.status ===200){
+									//做一些事情  request.responseText
+								}
+							}
+							
+							
+					PHP是一种创建动态交互性站点的服务器端脚本语言
+					PHP能够生成动态页面内容，能够创建、打开、读取、写入、删除以及关闭服务器上的文件，能够接收表单数据，能够发送并取回cookies，
+					能够添加、删除、修改数据库中的数据，能够限制用户访问网站中的某些页面……兼容Web服务器，支持数据库
+					XAMPP:一体软件包，类似于WAMP
+					当编写完php代码后，可通过Fiddler进行测试
+					
+					
+					
+					JSON:JS对象表示法（javascript object notation）
+					JSON是存储和交换文本信息的语法，类似XML。它采用键值对的方式来组织，易于人们阅读和编写，同时也易于机器解析和生成
+					JSON是独立于语言的，不管什么语言都能解析JSON，只需按照JSON的规则即可
+					JSON与XML的比较：
+						JSON的长度更短小
+						JSON的读写速度更快
+						JSON可以使用JS内建的方法直接进行解析，转换成JS对象，非常方便
+					JSON语法规则：
+						JSON数据的书写格式：名称/值对，如："name":"hjh"
+						JSON的值可以是这些类型：数字（整数或浮点数），字符串（在双引号中），逻辑值（true,false），数组（在方括号中）,对象（在花括号中）,null
+							如：
+							{
+								"staff":[
+									{"name":"zhao","age":"12"},
+									{"name":"qian","age":"15"},
+									{"name":"sun","age":"17"}
+								]
+							}
+					JSON解析：
+						第一种：eval
+							如：var jsonobj = eval('(' + jsondata + ')');
+						第二种：JSON.parse
+							如：var jsonobj - JSON.parse(jsondata);
+						这两种方式都可以解析JSON数据，但是第一种方式不会判断JSON数据格式是否书写正确，若JSON数据内部存在方法的话，也会直接执行。第二种方式则会对JSON数据格式进行判断，较为安全，也较为常用。
+						除此之外，可以使用工具对JSON格式进行校验，如：jsonlint.com
+		-->
+	</head>
+	<body>
+		<!--案例：查询员工信息，新建员工信息，包含html和php页面-->
+		
+	</body>
+</html>
